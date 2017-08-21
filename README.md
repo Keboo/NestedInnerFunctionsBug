@@ -12,3 +12,62 @@ Output
 1>    C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\MSBuild\15.0\Bin\Roslyn\Microsoft.CSharp.Core.targets(84,5): error MSB6006: "csc.exe" exited with code -2146232797.
 1>  Done executing task "Csc" -- FAILED.
 ```
+
+Event Viewer log
+```
+Application: csc.exe
+Framework Version: v4.0.30319
+Description: The application requested process termination through System.Environment.FailFast(string message).
+Message: System.Collections.Generic.KeyNotFoundException: The given key was not present in the dictionary.
+   at System.ThrowHelper.ThrowKeyNotFoundException()
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at Microsoft.CodeAnalysis.CSharp.LambdaRewriter.RewriteLambdaOrLocalFunction(IBoundLambdaOrFunction node, ClosureKind& closureKind, NamedTypeSymbol& translatedLambdaContainer, LambdaFrame& containerAsFrame, BoundNode& lambdaScope, DebugId& topLevelMethodId, DebugId& lambdaId)
+   at Microsoft.CodeAnalysis.CSharp.LambdaRewriter.VisitLocalFunctionStatement(BoundLocalFunctionStatement node)
+   at Microsoft.CodeAnalysis.CSharp.BoundTreeRewriterWithStackGuard.Visit(BoundNode node)
+   at Microsoft.CodeAnalysis.CSharp.LambdaRewriter.RewriteBlock(BoundBlock node, ArrayBuilder`1 prologue, ArrayBuilder`1 newLocals)
+   at Microsoft.CodeAnalysis.CSharp.LambdaRewriter.VisitBlock(BoundBlock node)
+   at Microsoft.CodeAnalysis.CSharp.LambdaRewriter.RewriteLambdaOrLocalFunction(IBoundLambdaOrFunction node, ClosureKind& closureKind, NamedTypeSymbol& translatedLambdaContainer, LambdaFrame& containerAsFrame, BoundNode& lambdaScope, DebugId& topLevelMethodId, DebugId& lambdaId)
+   at Microsoft.CodeAnalysis.CSharp.LambdaRewriter.VisitLocalFunctionStatement(BoundLocalFunctionStatement node)
+   at Microsoft.CodeAnalysis.CSharp.BoundTreeRewriterWithStackGuard.Visit(BoundNode node)
+   at Microsoft.CodeAnalysis.CSharp.LambdaRewriter.RewriteBlock(BoundBlock node, ArrayBuilder`1 prologue, ArrayBuilder`1 newLocals)
+   at Microsoft.CodeAnalysis.CSharp.LambdaRewriter.IntroduceFrame(BoundNode node, LambdaFrame frame, Func`3 F)
+   at Microsoft.CodeAnalysis.CSharp.LambdaRewriter.VisitBlock(BoundBlock node)
+   at Microsoft.CodeAnalysis.CSharp.BoundTreeRewriterWithStackGuard.Visit(BoundNode node)
+   at Microsoft.CodeAnalysis.CSharp.LambdaRewriter.Rewrite(BoundStatement loweredBody, NamedTypeSymbol thisType, ParameterSymbol thisParameter, MethodSymbol method, Int32 methodOrdinal, MethodSymbol substitutedSourceMethod, ArrayBuilder`1 lambdaDebugInfoBuilder, ArrayBuilder`1 closureDebugInfoBuilder, VariableSlotAllocator slotAllocatorOpt, TypeCompilationState compilationState, DiagnosticBag diagnostics, HashSet`1 assignLocals)
+   at Microsoft.CodeAnalysis.CSharp.MethodCompiler.LowerBodyOrInitializer(MethodSymbol method, Int32 methodOrdinal, BoundStatement body, SynthesizedSubmissionFields previousSubmissionFields, TypeCompilationState compilationState, Boolean instrumentForDynamicAnalysis, DebugDocumentProvider debugDocumentProvider, ImmutableArray`1& dynamicAnalysisSpans, DiagnosticBag diagnostics, VariableSlotAllocator& lazyVariableSlotAllocator, ArrayBuilder`1 lambdaDebugInfoBuilder, ArrayBuilder`1 closureDebugInfoBuilder, StateMachineTypeSymbol& stateMachineTypeOpt)
+   at Microsoft.CodeAnalysis.CSharp.MethodCompiler.CompileMethod(MethodSymbol methodSymbol, Int32 methodOrdinal, ProcessedFieldInitializers& processedInitializers, SynthesizedSubmissionFields previousSubmissionFields, TypeCompilationState compilationState)
+   at Microsoft.CodeAnalysis.CSharp.MethodCompiler.CompileNamedType(NamedTypeSymbol containingType)
+   at Microsoft.CodeAnalysis.CSharp.MethodCompiler.<>c__DisplayClass21_0.<CompileNamedTypeAsTask>b__0()
+Stack:
+   at System.Environment.FailFast(System.String, System.Exception)
+   at Microsoft.CodeAnalysis.FatalError.Report(System.Exception, System.Action`1<System.Exception>)
+   at Microsoft.CodeAnalysis.FatalError.ReportUnlessCanceled(System.Exception)
+   at Microsoft.CodeAnalysis.CSharp.MethodCompiler+<>c__DisplayClass21_0.<CompileNamedTypeAsTask>b__0()
+   at System.ThrowHelper.ThrowKeyNotFoundException()
+   at System.Collections.Generic.Dictionary`2[[System.__Canon, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089],[System.__Canon, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]].get_Item(System.__Canon)
+   at Microsoft.CodeAnalysis.CSharp.LambdaRewriter.RewriteLambdaOrLocalFunction(Microsoft.CodeAnalysis.CSharp.IBoundLambdaOrFunction, Microsoft.CodeAnalysis.CSharp.ClosureKind ByRef, Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol ByRef, Microsoft.CodeAnalysis.CSharp.LambdaFrame ByRef, Microsoft.CodeAnalysis.CSharp.BoundNode ByRef, Microsoft.CodeAnalysis.CodeGen.DebugId ByRef, Microsoft.CodeAnalysis.CodeGen.DebugId ByRef)
+   at Microsoft.CodeAnalysis.CSharp.LambdaRewriter.VisitLocalFunctionStatement(Microsoft.CodeAnalysis.CSharp.BoundLocalFunctionStatement)
+   at Microsoft.CodeAnalysis.CSharp.BoundTreeRewriterWithStackGuard.Visit(Microsoft.CodeAnalysis.CSharp.BoundNode)
+   at Microsoft.CodeAnalysis.CSharp.LambdaRewriter.RewriteBlock(Microsoft.CodeAnalysis.CSharp.BoundBlock, Microsoft.CodeAnalysis.ArrayBuilder`1<Microsoft.CodeAnalysis.CSharp.BoundExpression>, Microsoft.CodeAnalysis.ArrayBuilder`1<Microsoft.CodeAnalysis.CSharp.Symbols.LocalSymbol>)
+   at Microsoft.CodeAnalysis.CSharp.LambdaRewriter.VisitBlock(Microsoft.CodeAnalysis.CSharp.BoundBlock)
+   at Microsoft.CodeAnalysis.CSharp.LambdaRewriter.RewriteLambdaOrLocalFunction(Microsoft.CodeAnalysis.CSharp.IBoundLambdaOrFunction, Microsoft.CodeAnalysis.CSharp.ClosureKind ByRef, Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol ByRef, Microsoft.CodeAnalysis.CSharp.LambdaFrame ByRef, Microsoft.CodeAnalysis.CSharp.BoundNode ByRef, Microsoft.CodeAnalysis.CodeGen.DebugId ByRef, Microsoft.CodeAnalysis.CodeGen.DebugId ByRef)
+   at Microsoft.CodeAnalysis.CSharp.LambdaRewriter.VisitLocalFunctionStatement(Microsoft.CodeAnalysis.CSharp.BoundLocalFunctionStatement)
+   at Microsoft.CodeAnalysis.CSharp.BoundTreeRewriterWithStackGuard.Visit(Microsoft.CodeAnalysis.CSharp.BoundNode)
+   at Microsoft.CodeAnalysis.CSharp.LambdaRewriter.RewriteBlock(Microsoft.CodeAnalysis.CSharp.BoundBlock, Microsoft.CodeAnalysis.ArrayBuilder`1<Microsoft.CodeAnalysis.CSharp.BoundExpression>, Microsoft.CodeAnalysis.ArrayBuilder`1<Microsoft.CodeAnalysis.CSharp.Symbols.LocalSymbol>)
+   at Microsoft.CodeAnalysis.CSharp.LambdaRewriter.IntroduceFrame(Microsoft.CodeAnalysis.CSharp.BoundNode, Microsoft.CodeAnalysis.CSharp.LambdaFrame, System.Func`3<Microsoft.CodeAnalysis.ArrayBuilder`1<Microsoft.CodeAnalysis.CSharp.BoundExpression>,Microsoft.CodeAnalysis.ArrayBuilder`1<Microsoft.CodeAnalysis.CSharp.Symbols.LocalSymbol>,Microsoft.CodeAnalysis.CSharp.BoundNode>)
+   at Microsoft.CodeAnalysis.CSharp.LambdaRewriter.VisitBlock(Microsoft.CodeAnalysis.CSharp.BoundBlock)
+   at Microsoft.CodeAnalysis.CSharp.BoundTreeRewriterWithStackGuard.Visit(Microsoft.CodeAnalysis.CSharp.BoundNode)
+   at Microsoft.CodeAnalysis.CSharp.LambdaRewriter.Rewrite(Microsoft.CodeAnalysis.CSharp.BoundStatement, Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol, Microsoft.CodeAnalysis.CSharp.Symbols.ParameterSymbol, Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol, Int32, Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol, Microsoft.CodeAnalysis.ArrayBuilder`1<Microsoft.CodeAnalysis.CodeGen.LambdaDebugInfo>, Microsoft.CodeAnalysis.ArrayBuilder`1<Microsoft.CodeAnalysis.CodeGen.ClosureDebugInfo>, Microsoft.CodeAnalysis.CodeGen.VariableSlotAllocator, Microsoft.CodeAnalysis.CSharp.TypeCompilationState, Microsoft.CodeAnalysis.DiagnosticBag, System.Collections.Generic.HashSet`1<Microsoft.CodeAnalysis.CSharp.Symbols.LocalSymbol>)
+   at Microsoft.CodeAnalysis.CSharp.MethodCompiler.LowerBodyOrInitializer(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol, Int32, Microsoft.CodeAnalysis.CSharp.BoundStatement, Microsoft.CodeAnalysis.CSharp.SynthesizedSubmissionFields, Microsoft.CodeAnalysis.CSharp.TypeCompilationState, Boolean, Microsoft.CodeAnalysis.CodeGen.DebugDocumentProvider, System.Collections.Immutable.ImmutableArray`1<Microsoft.CodeAnalysis.CodeGen.SourceSpan> ByRef, Microsoft.CodeAnalysis.DiagnosticBag, Microsoft.CodeAnalysis.CodeGen.VariableSlotAllocator ByRef, Microsoft.CodeAnalysis.ArrayBuilder`1<Microsoft.CodeAnalysis.CodeGen.LambdaDebugInfo>, Microsoft.CodeAnalysis.ArrayBuilder`1<Microsoft.CodeAnalysis.CodeGen.ClosureDebugInfo>, Microsoft.CodeAnalysis.CSharp.StateMachineTypeSymbol ByRef)
+   at Microsoft.CodeAnalysis.CSharp.MethodCompiler.CompileMethod(Microsoft.CodeAnalysis.CSharp.Symbols.MethodSymbol, Int32, ProcessedFieldInitializers ByRef, Microsoft.CodeAnalysis.CSharp.SynthesizedSubmissionFields, Microsoft.CodeAnalysis.CSharp.TypeCompilationState)
+   at Microsoft.CodeAnalysis.CSharp.MethodCompiler.CompileNamedType(Microsoft.CodeAnalysis.CSharp.Symbols.NamedTypeSymbol)
+   at Microsoft.CodeAnalysis.CSharp.MethodCompiler+<>c__DisplayClass21_0.<CompileNamedTypeAsTask>b__0()
+   at Roslyn.Utilities.UICultureUtilities+<>c__DisplayClass5_0.<WithCurrentUICulture>b__0()
+   at System.Threading.Tasks.Task.Execute()
+   at System.Threading.ExecutionContext.RunInternal(System.Threading.ExecutionContext, System.Threading.ContextCallback, System.Object, Boolean)
+   at System.Threading.ExecutionContext.Run(System.Threading.ExecutionContext, System.Threading.ContextCallback, System.Object, Boolean)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(System.Threading.Tasks.Task ByRef)
+   at System.Threading.Tasks.Task.ExecuteEntry(Boolean)
+   at System.Threading.ThreadPoolWorkQueue.Dispatch()
+
+```
