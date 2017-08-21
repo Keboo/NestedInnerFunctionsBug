@@ -1,5 +1,7 @@
 # Nested Inner Functions Bug
-A repository showing a bug with VS2017 Update 3
+A repository showing a bug with VS2017 Update 3.
+
+[Roselyn issue](https://github.com/dotnet/roslyn/issues/21645)
 
 ## Reproduction Steps
 - Compile solution with VS2017 Update 3. CSC compile error received.
